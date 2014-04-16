@@ -1,12 +1,11 @@
 "---------------------------------------------
 "Colors
 
-"my terminal supports 256 collors
+"my terminal supports 256 colors
 set t_Co=256
 set background=dark
 "Setting my coloscheme
 colorscheme xoria256
-
 
 "---------------------------------------------
 "Misc
@@ -25,9 +24,7 @@ function! NumberToggle()
 	endif
 endfunc
 
-
-
-"I don't want to backup filese 
+"I don't want to backup files 
 set nobackup
 set noswapfile
 set modelines=0
