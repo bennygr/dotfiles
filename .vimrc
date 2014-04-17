@@ -61,8 +61,10 @@ set autoindent
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
-set omnifunc=syntaxcomplete#Complete
+"fold by indentations
+set foldmethod=indent
 
+set omnifunc=syntaxcomplete#Complete
 "---------------------------------------------
 "Search options
 
