@@ -29,6 +29,9 @@ set nobackup
 set noswapfile
 set modelines=0
 
+"enable filetype detection
+filetype on
+
 "Indent by 4 tabs
 set tabstop=4 
 "indent with << and >> command
@@ -64,7 +67,12 @@ autocmd QuickFixCmdPost    l* nested lwindow
 "fold by indentations
 set foldmethod=indent
 
-set omnifunc=syntaxcomplete#Complete
+"clang completion
+"plugin from https://github.com/Rip-Rip/clang_complete
+"package libclang-dev has to be installed
+"we don't need to set this path
+"let g:clang_library_path = '/usr/lib/'
+
 "---------------------------------------------
 "Search options
 
