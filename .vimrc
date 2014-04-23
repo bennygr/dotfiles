@@ -67,11 +67,23 @@ autocmd QuickFixCmdPost    l* nested lwindow
 "fold by indentations
 set foldmethod=indent
 
+"---------------------------------------------
 "clang completion
 "plugin from https://github.com/Rip-Rip/clang_complete
 "package libclang-dev has to be installed
-"we don't need to set this path
-"let g:clang_library_path = '/usr/lib/'
+
+"don't show the preview window becaue it is not informative at all
+:set completeopt-=preview
+
+"automatically select the first entry in the popup menu
+let g:clang_auto_select = 1
+"open quickfix window
+let g:clang_complete_copen = 1
+"periodic update
+let g:clang_periodic_quickfix = 1
+"insert argument placeholders when calling a memberfunction 
+"(Use tab to jump to the next parameter)
+let g:clang_snippets = 1
 
 "---------------------------------------------
 "Search options
@@ -88,9 +100,13 @@ set hlsearch
 "Show Nerdtree  with F2
 map <F2> :NERDTreeToggle<CR>
 
+"Clang update
+map <F12> :call g:ClangUpdateQuickFix()<CR>
+map <F11> :!~/.vim/bin/make_clang.sh<CR>
+
 "going to previous/next issue
-map <F3> :cp<CR>
-map <F4> :cn<CR>
+map <F7> :cp<CR>
+map <F8>> :cn<CR>
 
 "Switching between absolute and relative line numbers 
 nnoremap <C-n> :call NumberToggle()<cr>
