@@ -34,7 +34,7 @@ set tabstop=4
 "indent with << and >> command
 set shiftwidth=4
 "indent in insert mode
-set softtabstop=2 
+set softtabstop=4 
 "dont use whitespace 
 set noexpandtab 
 "Show if we are in Insert mode
@@ -79,6 +79,10 @@ set hlsearch
 
 "Show Nerdtree  with F2
 map <F2> :NERDTreeToggle<CR>
+
+"going to previous/next issue
+map <F3> :cp<CR>
+map <F4> :cn<CR>
 
 "Switching between absolute and relative line numbers 
 nnoremap <C-n> :call NumberToggle()<cr>
