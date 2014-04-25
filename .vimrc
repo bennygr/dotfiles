@@ -78,7 +78,7 @@ set foldmethod=indent
 "automatically select the first entry in the popup menu
 let g:clang_auto_select = 1
 "open quickfix window
-let g:clang_complete_copen = 1
+let g:clang_complete_copen = 0
 "periodic update
 let g:clang_periodic_quickfix = 1
 "insert argument placeholders when calling a memberfunction 
@@ -102,11 +102,11 @@ map <F2> :NERDTreeToggle<CR>
 
 "Clang update
 map <F12> :call g:ClangUpdateQuickFix()<CR>
-map <F11> :!~/.vim/bin/make_clang.sh<CR>
+map <F10> :!~/.vim/bin/make_clang.sh<CR>
 
 "going to previous/next issue
 map <F7> :cp<CR>
-map <F8>> :cn<CR>
+map <F8> :cn<CR>
 
 "Switching between absolute and relative line numbers 
 nnoremap <C-n> :call NumberToggle()<cr>
