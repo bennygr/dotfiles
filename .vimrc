@@ -48,6 +48,18 @@ set showmode
 "vim directory 
 set undofile
 set undodir=~/.vim/undo
+"---------------------------------------------
+"Spell-Checking
+"z=:		Suggest a word
+"zg:		Add unknown word to the word list
+"zG:		Add unknown word to the temporary word list, which is like "Ignore"
+"See:http://vimdoc.sourceforge.net/htmldoc/spell.html
+
+"Turn on spell checking for 
+"markdown files
+autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us
+"and textfiles
+autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_us
 
 "---------------------------------------------
 "Programming
