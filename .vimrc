@@ -1,3 +1,43 @@
+let iCanHazVundle=1
+let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
+if !filereadable(vundle_readme)
+	echo "Installing Vundle.."
+	echo ""
+	silent !mkdir -p ~/.vim/bundle/Vundle.vim/
+	silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+endif
+
+"---------------------------------------------
+"Plugin management using Vundle 
+"https://github.com/gmarik/Vundle.vim
+
+"set the runtime path to include Vundle and initialize
+set runtimepath+=~/.vim/bundle/Vundle.vim
+",/.vim/bundle/vim-snippets
+call vundle#begin()
+set nocompatible
+filetype off                  
+
+"Let Vundle manage Vunlde
+Plugin 'gmarik/Vundle.vim'
+"UltiSnips snippets engine 
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+"The nerdtree plugin
+Plugin 'scrooloose/nerdtree'
+"Tab support for nerdtree
+Plugin 'jistr/vim-nerdtree-tabs'
+"The A plugin for cpp<->h 
+Plugin 'a.vim'
+
+filetype plugin indent on    " required
+"All of your Plugins must be added before the following line
+call vundle#end() 
+
+syntax on
+filetype off
+filetype plugin indent on
+
 "---------------------------------------------
 "Colors
 
@@ -28,9 +68,6 @@ endfunc
 set nobackup
 set noswapfile
 set modelines=0
-
-"enable filetype detection
-filetype on
 
 "Indent by 4 tabs
 set tabstop=4 
@@ -63,11 +100,7 @@ autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_us
 
 "---------------------------------------------
 "Programming
-
-"The "A"-Plugin for switching between Source- and Header-Files
-source ~/.vim/plugin/a.vim
-"c++ plugin
-"source ~/.vim/plugin/vimCpp117.vim
+"syntax on
 
 "auto indent code
 set autoindent
@@ -87,7 +120,7 @@ set foldmethod=indent
 "don't show the preview window becaue it is not informative at all
 :set completeopt-=preview
 
-"automatically select the first entry in the popup menu
+""automatically select the first entry in the popup menu
 let g:clang_auto_select = 1
 "open quickfix window
 let g:clang_complete_copen = 0
@@ -109,8 +142,15 @@ set hlsearch
 "---------------------------------------------
 "My key mappings
 
+"Ulti snip key mappings
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
+
 "Show Nerdtree  with F2
-map <F2> :NERDTreeToggle<CR>
+map <F2> :NERDTreeTabsToggle<CR>
+"map <F2> :NERDTreeToggle<CR>
 
 "Clang update
 map <F12> :call g:ClangUpdateQuickFix()<CR>
@@ -141,3 +181,7 @@ map tp :tabprevious<CR>
 map tn :tabnext<CR>
 map tq :tabclose<CR>
 map tqq :tabclose!<CR>
+
+"syntax on
+"filetype off
+"filetype plugin indent on
