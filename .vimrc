@@ -1,24 +1,25 @@
+"---------------------------------------------
+"Plugin management using Vundle 
+"https://github.com/gmarik/Vundle.vim
+
+"install vundle itself if it is not installed yet
 let iCanHazVundle=1
 let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
 if !filereadable(vundle_readme)
 	echo "Installing Vundle.."
 	echo ""
 	silent !mkdir -p ~/.vim/bundle/Vundle.vim/
-	silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+	silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/Vundle.vim/
 endif
-
-"---------------------------------------------
-"Plugin management using Vundle 
-"https://github.com/gmarik/Vundle.vim
 
 "set the runtime path to include Vundle and initialize
 set runtimepath+=~/.vim/bundle/Vundle.vim
-",/.vim/bundle/vim-snippets
 call vundle#begin()
 set nocompatible
 filetype off                  
 
-"Let Vundle manage Vunlde
+"my plugins:
+"Let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
 "UltiSnips snippets engine 
 Plugin 'SirVer/ultisnips'
@@ -34,13 +35,13 @@ filetype plugin indent on    " required
 "All of your Plugins must be added before the following line
 call vundle#end() 
 
+"restoring filetype detection
 syntax on
 filetype off
 filetype plugin indent on
 
 "---------------------------------------------
 "Colors
-
 "my terminal supports 256 colors
 set t_Co=256
 set background=dark
@@ -100,8 +101,6 @@ autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_us
 
 "---------------------------------------------
 "Programming
-"syntax on
-
 "auto indent code
 set autoindent
 
@@ -181,7 +180,3 @@ map tp :tabprevious<CR>
 map tn :tabnext<CR>
 map tq :tabclose<CR>
 map tqq :tabclose!<CR>
-
-"syntax on
-"filetype off
-"filetype plugin indent on
