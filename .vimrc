@@ -23,7 +23,8 @@ filetype off
 Plugin 'gmarik/Vundle.vim'
 "UltiSnips snippets engine 
 Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+"My personal snippets
+Plugin 'bennygr/snips'
 "The nerdtree plugin
 Plugin 'scrooloose/nerdtree'
 "Tab support for nerdtree
@@ -118,7 +119,6 @@ set foldmethod=indent
 
 "don't show the preview window becaue it is not informative at all
 :set completeopt-=preview
-
 ""automatically select the first entry in the popup menu
 let g:clang_auto_select = 1
 "open quickfix window
@@ -142,10 +142,9 @@ set hlsearch
 "My key mappings
 
 "Ulti snip key mappings
-let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsExpandTrigger="<c-b>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsEditSplit="vertical"
 
 "Show Nerdtree  with F2
 map <F2> :NERDTreeTabsToggle<CR>
