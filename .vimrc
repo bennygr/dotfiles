@@ -33,6 +33,8 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'a.vim'
 "MatchTagAllways to match HTML tags
 Plugin 'Valloric/MatchTagAlways'
+"Change surrounding plugins for tags and parentheses 
+Plugin 'tpope/vim-surround'
 
 
 filetype plugin indent on    " required
@@ -151,7 +153,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 "Show Nerdtree  with F2
 map <F2> :NERDTreeTabsToggle<CR>
-"map <F2> :NERDTreeToggle<CR>
 
 "Clang update
 map <F12> :call g:ClangUpdateQuickFix()<CR>
