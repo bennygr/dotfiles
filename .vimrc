@@ -35,6 +35,8 @@ Plugin 'a.vim'
 Plugin 'Valloric/MatchTagAlways'
 "Change surrounding plugins for tags and parentheses 
 Plugin 'tpope/vim-surround'
+"Super cool html closing tag plugin for *.html files!
+Plugin 'vim-scripts/HTML-AutoCloseTag'
 
 
 filetype plugin indent on    " required
