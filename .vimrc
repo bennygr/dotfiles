@@ -31,6 +31,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 "The A plugin for cpp<->h 
 Plugin 'a.vim'
+"MatchTagAllways to match HTML tags
+Plugin 'Valloric/MatchTagAlways'
+
 
 filetype plugin indent on    " required
 "All of your Plugins must be added before the following line
