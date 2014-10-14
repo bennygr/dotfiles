@@ -41,6 +41,8 @@ Plugin 'vim-scripts/HTML-AutoCloseTag'
 Plugin 'Townk/vim-autoclose'
 "lightline statusbar 
 Plugin 'itchyny/lightline.vim'
+"ctrlp plugin for opening files
+Plugin 'kien/ctrlp.vim'
 
 filetype plugin indent on    " required
 "All of your Plugins must be added before the following line
