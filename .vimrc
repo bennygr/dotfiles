@@ -35,9 +35,12 @@ Plugin 'a.vim'
 Plugin 'Valloric/MatchTagAlways'
 "Change surrounding plugins for tags and parentheses 
 Plugin 'tpope/vim-surround'
-"Super cool html closing tag plugin for *.html files!
+"Autoclosing html tags
 Plugin 'vim-scripts/HTML-AutoCloseTag'
-
+"Autoclosing parentheses 
+Plugin 'Townk/vim-autoclose'
+"lightline statusbar 
+Plugin 'itchyny/lightline.vim'
 
 filetype plugin indent on    " required
 "All of your Plugins must be added before the following line
@@ -55,6 +58,7 @@ set t_Co=256
 set background=dark
 "Setting my coloscheme
 colorscheme xoria256
+hi normal ctermbg=none
 
 "---------------------------------------------
 "Misc
@@ -106,6 +110,18 @@ set undodir=~/.vim/undo
 autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us
 "and textfiles
 autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_us
+"---------------------------------------------
+"options for the lightline status bar plugin 
+set laststatus=2 
+set noshowmode
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"x":""}',
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ }
 
 "---------------------------------------------
 "Programming
