@@ -35,15 +35,12 @@ Plugin 'a.vim'
 Plugin 'Valloric/MatchTagAlways'
 "Change surrounding plugins for tags and parentheses 
 Plugin 'tpope/vim-surround'
-"Autoclosing html tags
-Plugin 'vim-scripts/HTML-AutoCloseTag'
 "Autoclosing parentheses 
 Plugin 'Townk/vim-autoclose'
 "lightline statusbar 
 Plugin 'itchyny/lightline.vim'
 "ctrlp plugin for opening files
 Plugin 'kien/ctrlp.vim'
-
 
 filetype plugin indent on    " required
 "All of your Plugins must be added before the following line
@@ -115,8 +112,12 @@ autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us
 autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_us
 "---------------------------------------------
 "options for the lightline status bar plugin 
+"needed to display the status bar
 set laststatus=2 
+"dont' show the originial mode because the mode
+"is shwon by lightline
 set noshowmode
+"status bar configuration
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'component': {
@@ -137,6 +138,9 @@ autocmd QuickFixCmdPost    l* nested lwindow
 
 "fold by indentations
 set foldmethod=indent
+
+"Please do not show html links
+:hi link htmlLink NONE
 
 "---------------------------------------------
 "clang completion
