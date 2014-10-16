@@ -41,6 +41,8 @@ Plugin 'Townk/vim-autoclose'
 Plugin 'itchyny/lightline.vim'
 "ctrlp plugin for opening files
 Plugin 'kien/ctrlp.vim'
+"git plugin
+Plugin 'tpope/vim-fugitive'
 
 filetype plugin indent on    " required
 "All of your Plugins must be added before the following line
@@ -119,13 +121,73 @@ set laststatus=2
 set noshowmode
 "status bar configuration
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'component': {
-      \   'readonly': '%{&readonly?"x":""}',
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
-      \ }
+			\ 'colorscheme': 'wombat',
+			\ 'mode_map': { 'c': 'NORMAL' },
+			\ 'active': {
+			\   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+			\ },
+			\ 'component_function': {
+			\   'modified': 'MyModified',
+			\   'readonly': 'MyReadonly',
+			\   'fugitive': 'MyFugitive',
+			\   'filename': 'MyFilename',
+			\   'fileformat': 'MyFileformat',
+			\   'filetype': 'MyFiletype',
+			\   'fileencoding': 'MyFileencoding',
+			\   'mode': 'MyMode',
+			\ },
+			\ 'separator': { 'left': '|', 'right': '|' },
+			\ 'subseparator': { 'left': '|', 'right': '|' }
+			\ }
+
+"show modified symbol for a file
+function! MyModified()
+	return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+"Show if a file is readonly
+function! MyReadonly()
+	return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'READONLY' : ''
+endfunction
+
+"Show the file's name
+function! MyFilename()
+	return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+				\ (&ft == 'vimfiler' ? vimfiler#get_status_string() : 
+				\  &ft == 'unite' ? unite#get_status_string() : 
+				\  &ft == 'vimshell' ? vimshell#get_status_string() :
+				\ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+				\ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+"show the current git branch
+function! MyFugitive()
+	if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+		let _ = fugitive#head()
+		return strlen(_) ? 'Branch -> '._ : ''
+	endif
+	return ''
+endfunction
+
+"show the fileformat
+function! MyFileformat()
+	return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+"show the filetype
+function! MyFiletype()
+	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+"show the fileencoding
+function! MyFileencoding()
+	return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+"show the current mode
+function! MyMode()
+	return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction  
 
 "---------------------------------------------
 "Programming
