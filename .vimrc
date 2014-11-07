@@ -43,6 +43,8 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'kien/ctrlp.vim'
 "git plugin
 Plugin 'tpope/vim-fugitive'
+"eclim plugin for accessing eclimd
+Plugin 'initrc/eclim-vundle'
 
 filetype plugin indent on    " required
 "All of your Plugins must be added before the following line
@@ -203,6 +205,27 @@ set foldmethod=indent
 
 "Please do not show html links
 :hi link htmlLink NONE
+
+"OmniComplete
+set omnifunc=syntaxcomplete#Complete
+
+"Java shortcuts for programming with eclipse using eclim
+"Create a default constructor
+command Jtor JavaConstructor
+"Getting the call hierarchy for the method under the cursor
+command Jhier JavaCallHierarchy
+"Implementing/Overwriting methods of the super class  
+command Jimpl JavaImpl
+"Import undefined types, remove unused imports, sort and format imports.
+command Jorg JavaImportOrganize
+"Import the cass under the cursor
+command Jimp JavaImport
+"Show suggstins for syntax errors
+command Jsug JavaCorrect
+"Rename the element under the cursor
+command! Jcn JavaRename
+"Shows the java doc of the element under the cursor
+command Jdoc JavaDocPreview
 
 "---------------------------------------------
 "clang completion
