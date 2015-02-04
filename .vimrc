@@ -43,6 +43,8 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'kien/ctrlp.vim'
 "git plugin
 Plugin 'tpope/vim-fugitive'
+"Text alignment 
+Plugin 'godlygeek/tabular'
 
 filetype plugin indent on    " required
 "All of your Plugins must be added before the following line
@@ -257,6 +259,9 @@ map ( : vertical res +7<CR>
 map ) : vertical res -7<CR>
 map [ : res +7<CR>
 map ] : res -7<CR>
+
+"Jumping to a help tag 
+map ; <C-]>
 
 "start make 
 map <F6> :make<CR>
