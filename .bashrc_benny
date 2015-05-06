@@ -27,3 +27,6 @@ function parse_git_branch() {
 #promt
 PS1='\n# \[\033[0;34m\]\u \[\033[0;37m\]at \[\033[0;34m\]\h \[\033[0;37m\]in \[\033[0;35m\]\w \[\033[0;036m\] $(parse_git_branch) \n\[\033[0;37m\]\$ \[\033[0m\]'
 
+if [ -z "$TMUX" ]; then
+	tmux
+fi 
