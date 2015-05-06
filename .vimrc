@@ -47,6 +47,15 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'godlygeek/tabular'
 "eclim plugin for accessing eclimd
 Plugin 'initrc/eclim-vundle'
+"gitgutter shows git changes at a sidebar
+"Plugin 'airblade/vim-gitgutter'
+"OmniSharp
+"Note: the omni-sharp server has to be build by hand after 
+"the plugin has been installed
+Plugin 'OmniSharp/omnisharp-vim'
+Plugin 'tpope/vim-dispatch'
+Plugin 'scrooloose/syntastic'
+
 
 filetype plugin indent on    " required
 "All of your Plugins must be added before the following line
@@ -54,6 +63,7 @@ call vundle#end()
 
 "restoring filetype detection
 syntax on
+"required for ultisnips?!
 filetype off
 filetype plugin indent on
 
@@ -210,6 +220,54 @@ set foldmethod=indent
 
 "OmniComplete
 set omnifunc=syntaxcomplete#Complete
+"longest: don't autoselect first item in omnicomplete
+"menuone: popup even on only one match
+set completeopt=longest,menuone
+
+"OmniSharp - for C# programming
+" this setting controls how long to wait (in ms) before fetching type / symbol
+" information under the cursor
+set updatetime=500
+" do not ask when changing buffers; for example when renaming files
+set hidden
+augroup omnisharp_commands
+    autocmd!
+
+    "Set autocomplete function to OmniSharp (if not using YouCompleteMe completion plugin)
+    autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+	
+    "automatic syntax check on events (TextChanged requires Vim 7.4)
+    autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
+	
+    "show type information automatically when the cursor stops moving
+    autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+
+	"Goto definition 
+    autocmd FileType cs nnoremap <leader>gd :OmniSharpGotoDefinition<cr>
+
+	"Find implementation for interfaces and abstract classes
+    autocmd FileType cs nnoremap <leader>fi :OmniSharpFindImplementations<cr>
+
+	"Finds the usage of symbol
+    autocmd FileType cs nnoremap <leader>fu :OmniSharpFindUsages<cr>
+	
+	"shows a list of code actions
+    autocmd FileType cs nnoremap <leader>ca :OmniSharpGetCodeActions<cr>
+	autocmd FileType cs vnoremap <leader>ca :call OmniSharp#GetCodeActions('visual')<cr>
+
+	"Renaming
+	"rename with dialog
+	autocmd FileType cs nnoremap <leader>rn :OmniSharpRename<cr>
+
+	"Shows the type of a symbol
+    autocmd FileType cs nnoremap <leader>tt :OmniSharpTypeLookup<cr>
+
+    " cursor can be anywhere on the line containing an issue
+    autocmd FileType cs nnoremap <leader>xi  :OmniSharpFixIssue<cr>
+    autocmd FileType cs nnoremap <leader>xu :OmniSharpFixUsings<cr>
+augroup END
+
+
 
 "Java shortcuts for programming with eclipse using eclim
 "Create a default constructor
@@ -230,21 +288,6 @@ command! Jcn JavaRename
 command Jdoc JavaDocPreview
 
 "---------------------------------------------
-"clang completion
-"plugin from https://github.com/Rip-Rip/clang_complete
-"package libclang-dev has to be installed
-
-"don't show the preview window becaue it is not informative at all
-:set completeopt-=preview
-""automatically select the first entry in the popup menu
-let g:clang_auto_select = 1
-"open quickfix window
-let g:clang_complete_copen = 0
-"periodic update
-let g:clang_periodic_quickfix = 1
-"insert argument placeholders when calling a memberfunction 
-"(Use tab to jump to the next parameter)
-let g:clang_snippets = 1
 
 "---------------------------------------------
 "Search options
@@ -256,7 +299,10 @@ set incsearch
 set hlsearch
 
 "---------------------------------------------
-"My key mappings
+"My general key mappings
+
+"mapping 
+let mapleader = ","
 
 "Ulti snip key mappings
 let g:UltiSnipsExpandTrigger="<c-b>"
@@ -265,10 +311,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 "Show Nerdtree  with F2
 map <F2> :NERDTreeTabsToggle<CR>
-
-"Clang update
-map <F12> :call g:ClangUpdateQuickFix()<CR>
-map <F10> :!~/.vim/bin/make_clang.sh<CR>
 
 "going to previous/next issue
 map <F7> :cp<CR>
