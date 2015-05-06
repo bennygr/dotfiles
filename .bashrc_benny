@@ -2,6 +2,9 @@
 PATH=$PATH:~/usr/bin
 export PATH
 
+#Set to 256 term in order to allow tmux to displa vim color nice
+export TERM=screen-256color-bce
+
 # I love VIM
 EDITOR=vim
 export EDITOR

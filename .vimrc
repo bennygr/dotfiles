@@ -288,6 +288,10 @@ command! Jcn JavaRename
 command Jdoc JavaDocPreview
 
 "---------------------------------------------
+"NERD TREDD
+"Show Nerdtree  with F2
+map <F2> :NERDTreeTabsToggle<CR>
+let NERDTreeDirArrows=0
 
 "---------------------------------------------
 "Search options
@@ -309,8 +313,6 @@ let g:UltiSnipsExpandTrigger="<c-b>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-"Show Nerdtree  with F2
-map <F2> :NERDTreeTabsToggle<CR>
 
 "going to previous/next issue
 map <F7> :cp<CR>
