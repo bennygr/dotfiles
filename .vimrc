@@ -89,7 +89,7 @@ function! NumberToggle()
 	if(&relativenumber == 1)
 	  set number
 	else
-		set relativenumber
+		set norelativenumber
 	endif
 endfunc
 
@@ -156,7 +156,7 @@ let g:lightline = {
 
 "show modified symbol for a file
 function! MyModified()
-	return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+	return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '✗' : &modifiable ? '' : '-'
 endfunction
 
 "Show if a file is readonly
@@ -178,7 +178,7 @@ endfunction
 function! MyFugitive()
 	if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
 		let _ = fugitive#head()
-		return strlen(_) ? 'Branch -> '._ : ''
+		return strlen(_) ? '↝ Branch '._ : ''
 	endif
 	return ''
 endfunction
@@ -268,24 +268,20 @@ augroup omnisharp_commands
 augroup END
 
 
+augroup eclim_commands
+	"using omnifunc <c-x>+<c-o> instead of <c-u>
+	let g:EclimCompletionMethod = 'omnifunc'
 
-"Java shortcuts for programming with eclipse using eclim
-"Create a default constructor
-command Jtor JavaConstructor
-"Getting the call hierarchy for the method under the cursor
-command Jhier JavaCallHierarchy
-"Implementing/Overwriting methods of the super class  
-command Jimpl JavaImpl
-"Import undefined types, remove unused imports, sort and format imports.
-command Jorg JavaImportOrganize
-"Import the cass under the cursor
-command Jimp JavaImport
-"Show suggstins for syntax errors
-command Jsug JavaCorrect
-"Rename the element under the cursor
-command! Jcn JavaRename
-"Shows the java doc of the element under the cursor
-command Jdoc JavaDocPreview
+	"Rename the element under the cursor
+	autocmd FileType java nnoremap <leader>rn :JavaRename<cr>
+
+	"Import undefined types, remove unused imports, sort and format imports.
+	"command Jorg JavaImportOrganize
+    autocmd FileType java nnoremap <leader>xu :JavaImportOrganize<cr>
+	"Show suggstins for syntax errors
+	autocmd FileType java nnoremap <leader>xi :JavaCorrect<cr>
+
+augroup END
 
 "---------------------------------------------
 "NERD TREDD
