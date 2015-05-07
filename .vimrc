@@ -265,6 +265,14 @@ augroup omnisharp_commands
     " cursor can be anywhere on the line containing an issue
     autocmd FileType cs nnoremap <leader>xi  :OmniSharpFixIssue<cr>
     autocmd FileType cs nnoremap <leader>xu :OmniSharpFixUsings<cr>
+
+	"Automatically add new cs files to the nearest project on save
+	autocmd BufWritePost *.cs call OmniSharp#AddToProject()
+	autocmd FileType cs nnoremap <leader>rl :OmniSharpReloadSolution<cr>
+	
+	" Load the current .cs file to the nearest project
+	autocmd FileType cs nnoremap <leader>ap :OmniSharpAddToProject<cr>
+	autocmd FileType cs nnoremap <F6> :OmniSharpBuildAsync<cr>
 augroup END
 
 
@@ -325,9 +333,6 @@ map ] : res -7<CR>
 
 "Jumping to a help tag 
 map ; <C-]>
-
-"start make 
-map <F6> :make<CR>
 
 "Clear searchresults with Control-L
 nnoremap <silent> <C--L> :nohlsearch<Bar>:echo<CR>
