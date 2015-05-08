@@ -312,6 +312,9 @@ set hlsearch
 "mapping 
 let mapleader = ","
 
+"Smart semicolon: adding semicolon at the end of the line
+inoremap <leader>, <C-o>A;
+
 "Ulti snip key mappings
 let g:UltiSnipsExpandTrigger="<c-b>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
