@@ -93,6 +93,11 @@ function! NumberToggle()
 	endif
 endfunc
 
+"Creating a uuid
+function! CreateGUID()
+	:.!uuidgen	
+endfunc
+
 "I don't want to backup files 
 set nobackup
 set noswapfile
@@ -272,7 +277,7 @@ augroup omnisharp_commands
 	
 	" Load the current .cs file to the nearest project
 	autocmd FileType cs nnoremap <leader>ap :OmniSharpAddToProject<cr>
-	autocmd FileType cs nnoremap <F6> :OmniSharpBuildAsync<cr>
+	autocmd FileType cs nnoremap <F6> :Make<cr>
 augroup END
 
 
@@ -317,13 +322,15 @@ let g:UltiSnipsExpandTrigger="<c-b>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-
 "going to previous/next issue
 map <F7> :cp<CR>
 map <F8> :cn<CR>
 
 "Switching between absolute and relative line numbers 
 nnoremap <C-n> :call NumberToggle()<cr>
+
+"creating a uuid
+nnoremap <leader>nguid :call CreateGUID()<cr>;
 
 "Change Size of Windows made with :sp and :vsp 
 map ( : vertical res +7<CR>

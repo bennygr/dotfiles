@@ -1,4 +1,10 @@
-# MY PATH
+#going home
+cd ~
+
+# MY PATH - everything under ~/usr/bin/
+for d in ~/usr/bin/*/; do
+	PATH+=":$d"
+done
 PATH=$PATH:~/usr/bin
 export PATH
 
