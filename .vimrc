@@ -209,7 +209,7 @@ function! MyMode()
 endfunction  
 
 "---------------------------------------------
-"Programming
+"Misc settings for Programming
 "auto indent code
 set autoindent
 
@@ -217,12 +217,8 @@ set autoindent
 highlight ColorColumn ctermbg=8
 set colorcolumn=100
 
-"Show the Quickfix-Window automatically on build-errors
-"autocmd QuickFixCmdPost [^l]* nested cwindow
-"autocmd QuickFixCmdPost    l* nested lwindow
-
-"fold by indentations
-set foldmethod=indent
+"dissabling folding by default
+set nofoldenable
 
 "Please do not show html links
 :hi link htmlLink NONE
@@ -233,6 +229,7 @@ set omnifunc=syntaxcomplete#Complete
 "menuone: popup even on only one match
 set completeopt=longest,menuone
 
+"---------------------------------------------
 "OmniSharp - for C# programming
 " this setting controls how long to wait (in ms) before fetching type / symbol
 " information under the cursor
