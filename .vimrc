@@ -230,6 +230,7 @@ set omnifunc=syntaxcomplete#Complete
 set completeopt=longest,menuone
 
 "---------------------------------------------
+"C# PROGRAMMING
 "OmniSharp - for C# programming
 " this setting controls how long to wait (in ms) before fetching type / symbol
 " information under the cursor
@@ -238,11 +239,12 @@ set updatetime=500
 set hidden
 
 "Reloading a solution file
-nnoremap <leader>rl :OmniSharpReloadSolution<cr>
+nnoremap <leader>5 :OmniSharpReloadSolution<cr>
 " Get Code Issues and syntax errors
 let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
 
 "Make
+nnoremap <F5> :OmniSharpBuildAsync<cr>
 nnoremap <F6> :Make<cr>
 augroup omnisharp_commands
     autocmd!
@@ -305,6 +307,9 @@ augroup eclim_commands
 
 augroup END
 
+"-Javascript--------------------------------------------
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS 
+"- See more at: https://docs.oseems.com/general/application/vim/auto-complete-javascript#sthash.Bq4MNdGy.dpuf
 "---------------------------------------------
 "NERD TREDD
 "Show Nerdtree  with F2
@@ -349,7 +354,7 @@ function! ToggleQuickFix()
 		endtry
 	endif
 endfunction
-nmap <script> <silent> <F5> :call ToggleQuickFix()<CR>
+nmap <script> <silent> <F12> :call ToggleQuickFix()<CR>
 
 "Switching between absolute and relative line numbers 
 nnoremap <C-n> :call NumberToggle()<cr>
