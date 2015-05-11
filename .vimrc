@@ -362,7 +362,8 @@ nnoremap <C-n> :call NumberToggle()<cr>
 "creating a uuid
 nnoremap <leader>nguid :call CreateGUID()<cr>;
 
-inoremap <leader>, <C-o>A;
+inoremap <leader>, <C-o>A;<ESC>
+nnoremap <leader>, <C-o>A;<ESC>
 
 "Change Size of Windows made with :sp and :vsp 
 map ( : vertical res +7<CR>
