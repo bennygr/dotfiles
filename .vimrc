@@ -209,16 +209,16 @@ function! MyMode()
 endfunction  
 
 "---------------------------------------------
-"Programming
+"Misc settings for Programming
 "auto indent code
 set autoindent
 
-"Show the Quickfix-Window automatically on build-errors
-autocmd QuickFixCmdPost [^l]* nested cwindow
-autocmd QuickFixCmdPost    l* nested lwindow
+"vertical line by 100 characters
+highlight ColorColumn ctermbg=8
+set colorcolumn=100
 
-"fold by indentations
-set foldmethod=indent
+"dissabling folding by default
+set nofoldenable
 
 "Please do not show html links
 :hi link htmlLink NONE
@@ -229,14 +229,30 @@ set omnifunc=syntaxcomplete#Complete
 "menuone: popup even on only one match
 set completeopt=longest,menuone
 
+"---------------------------------------------
+"C# PROGRAMMING
 "OmniSharp - for C# programming
 " this setting controls how long to wait (in ms) before fetching type / symbol
 " information under the cursor
 set updatetime=500
 " do not ask when changing buffers; for example when renaming files
 set hidden
+
+"Reloading a solution file
+nnoremap <leader>5 :OmniSharpReloadSolution<cr>
+" Get Code Issues and syntax errors
+let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
+
+"Make
+nnoremap <F5> :OmniSharpBuildAsync<cr>
+nnoremap <F6> :Make<cr>
 augroup omnisharp_commands
     autocmd!
+
+	"This is the error format for msbuild/xbuild
+	"In addition you should call xbuild with /property:GenerateFullPaths=true
+	"in order to generate full paths where vim can jump to
+	:set errorformat=\ %#%f(%l\\\,%c):\ %m
 
     "Set autocomplete function to OmniSharp (if not using YouCompleteMe completion plugin)
     autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
@@ -268,16 +284,11 @@ augroup omnisharp_commands
     autocmd FileType cs nnoremap <leader>tt :OmniSharpTypeLookup<cr>
 
     " cursor can be anywhere on the line containing an issue
-    autocmd FileType cs nnoremap <leader>xi  :OmniSharpFixIssue<cr>
+    autocmd FileType cs nnoremap <leader>xx :OmniSharpFixIssue<cr>
     autocmd FileType cs nnoremap <leader>xu :OmniSharpFixUsings<cr>
 
 	"Automatically add new cs files to the nearest project on save
 	autocmd BufWritePost *.cs call OmniSharp#AddToProject()
-	autocmd FileType cs nnoremap <leader>rl :OmniSharpReloadSolution<cr>
-	
-	" Load the current .cs file to the nearest project
-	autocmd FileType cs nnoremap <leader>ap :OmniSharpAddToProject<cr>
-	autocmd FileType cs nnoremap <F6> :Make<cr>
 augroup END
 
 
@@ -292,10 +303,13 @@ augroup eclim_commands
 	"command Jorg JavaImportOrganize
     autocmd FileType java nnoremap <leader>xu :JavaImportOrganize<cr>
 	"Show suggstins for syntax errors
-	autocmd FileType java nnoremap <leader>xi :JavaCorrect<cr>
+	autocmd FileType java nnoremap <leader>xx :JavaCorrect<cr>
 
 augroup END
 
+"-Javascript--------------------------------------------
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS 
+"- See more at: https://docs.oseems.com/general/application/vim/auto-complete-javascript#sthash.Bq4MNdGy.dpuf
 "---------------------------------------------
 "NERD TREDD
 "Show Nerdtree  with F2
@@ -326,14 +340,32 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 "going to previous/next issue
-map <F7> :cp<CR>
-map <F8> :cn<CR>
+map <F3> :cp<CR>
+map <F4> :cn<CR>
+"closing the quickfix window
+let g:toggle_list_no_mappings = 1
+function! ToggleQuickFix()
+	if exists("g:qwindow")
+		close
+		unlet g:qwindow
+	else
+		try
+			copen 10
+			let g:qwindow = 1
+		catch 
+			echo "No Errors found!"
+		endtry
+	endif
+endfunction
+nmap <script> <silent> <F12> :call ToggleQuickFix()<CR>
 
 "Switching between absolute and relative line numbers 
 nnoremap <C-n> :call NumberToggle()<cr>
 
 "creating a uuid
 nnoremap <leader>nguid :call CreateGUID()<cr>;
+
+inoremap <leader>, <C-o>A;
 
 "Change Size of Windows made with :sp and :vsp 
 map ( : vertical res +7<CR>
