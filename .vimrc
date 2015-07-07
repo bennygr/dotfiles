@@ -55,6 +55,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'scrooloose/syntastic'
+"Youcompleteme
+Plugin 'Valloric/YouCompleteMe'
 
 
 filetype plugin indent on    " required
@@ -234,7 +236,7 @@ set completeopt=longest,menuone
 "OmniSharp - for C# programming
 " this setting controls how long to wait (in ms) before fetching type / symbol
 " information under the cursor
-set updatetime=500
+set updatetime=100
 " do not ask when changing buffers; for example when renaming files
 set hidden
 
@@ -275,6 +277,9 @@ augroup omnisharp_commands
 	"shows a list of code actions
     autocmd FileType cs nnoremap <leader>ca :OmniSharpGetCodeActions<cr>
 	autocmd FileType cs vnoremap <leader>ca :call OmniSharp#GetCodeActions('visual')<cr>
+
+	"Code format
+	autocmd FileType cs nnoremap <leader>cf :OmniSharpCodeFormat<cr>
 
 	"Renaming
 	"rename with dialog
@@ -365,7 +370,8 @@ nnoremap <C-n> :call NumberToggle()<cr>
 "creating a uuid
 nnoremap <leader>nguid :call CreateGUID()<cr>;
 
-inoremap <leader>, <C-o>A;
+inoremap <leader>, <C-o>A;<ESC>
+nnoremap <leader>, <C-o>A;<ESC>
 
 "Change Size of Windows made with :sp and :vsp 
 map ( : vertical res +7<CR>
