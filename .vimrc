@@ -334,7 +334,8 @@ set hlsearch
 "My general key mappings
 
 "mapping 
-let mapleader = ","
+"let mapleader = ","
+let mapleader = "\<Space>"
 
 "Smart semicolon: adding semicolon at the end of the line
 inoremap <leader>, <C-o>A;
