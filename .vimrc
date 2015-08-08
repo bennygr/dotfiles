@@ -30,7 +30,7 @@ Plugin 'scrooloose/nerdtree'
 "Tab support for nerdtree
 Plugin 'jistr/vim-nerdtree-tabs'
 "The A plugin for cpp<->h 
-Plugin 'a.vim'
+"Plugin 'a.vim'
 "MatchTagAllways to match HTML tags
 Plugin 'Valloric/MatchTagAlways'
 "Change surrounding plugins for tags and parentheses 
@@ -344,6 +344,10 @@ inoremap <leader>, <C-o>A;
 let g:UltiSnipsExpandTrigger="<c-b>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+"Omni completion
+"allowing enter to accept suggestions
+:inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 "going to previous/next issue
 map <F3> :cp<CR>
