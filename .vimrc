@@ -45,10 +45,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 "Text alignment 
 Plugin 'godlygeek/tabular'
-"eclim plugin for accessing eclimd
-Plugin 'initrc/eclim-vundle'
-"gitgutter shows git changes at a sidebar
-Plugin 'airblade/vim-gitgutter'
 "OmniSharp
 "Note: the omni-sharp server has to be build by hand after 
 "the plugin has been installed
