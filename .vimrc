@@ -81,6 +81,9 @@ hi normal ctermbg=none
 "---------------------------------------------
 "Misc
 
+"enable the mouse in all modes
+set mouse=a
+
 "Show rownumbers
 set number
 "But let us switch to relative numbers using a
