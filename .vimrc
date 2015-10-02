@@ -53,6 +53,8 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'scrooloose/syntastic'
 "Youcompleteme
 Plugin 'Valloric/YouCompleteMe'
+"Colorthemes
+Plugin 'jnurmine/Zenburn'
 
 
 filetype plugin indent on    " required
@@ -71,7 +73,8 @@ filetype plugin indent on
 set t_Co=256
 set background=dark
 "Setting my coloscheme
-colorscheme xoria256
+"colorscheme xoria256
+colors zenburn
 hi normal ctermbg=none
 
 "---------------------------------------------
