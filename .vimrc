@@ -56,7 +56,6 @@ Plugin 'Valloric/YouCompleteMe'
 "Colorthemes
 Plugin 'jnurmine/Zenburn'
 
-
 filetype plugin indent on    " required
 "All of your Plugins must be added before the following line
 call vundle#end() 
@@ -71,10 +70,10 @@ filetype plugin indent on
 "Colors
 "my terminal supports 256 colors
 set t_Co=256
-set background=dark
+"set background=dark
 "Setting my coloscheme
-"colorscheme xoria256
-colors zenburn
+colorscheme xoria256
+"colorscheme zenburn
 hi normal ctermbg=none
 
 "---------------------------------------------
