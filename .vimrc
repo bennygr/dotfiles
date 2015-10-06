@@ -89,11 +89,19 @@ set number
 "We can map this to a hot key in the  key map
 "section
 function! NumberToggle()
-	if(&relativenumber == 1)
-	  set number
-	else
-		set norelativenumber
-	endif
+  if(&relativenumber == 1)
+    set norelativenumber
+  else
+    set relativenumber
+  endif
+endfunc
+"let us switch to Paste and Non-Paste mode
+function! PasteToggle()
+  if(&paste == 1)
+    set nopaste
+  else
+    set paste
+  endif
 endfunc
 
 "Creating a uuid
@@ -372,6 +380,8 @@ nmap <script> <silent> <F12> :call ToggleQuickFix()<CR>
 
 "Switching between absolute and relative line numbers 
 nnoremap <C-n> :call NumberToggle()<cr>
+"Switching between Paste Modes
+nnoremap <C-c> :call PasteToggle()<cr>
 
 "creating a uuid
 nnoremap <leader>nguid :call CreateGUID()<cr>;
