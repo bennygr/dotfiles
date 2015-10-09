@@ -53,8 +53,6 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'scrooloose/syntastic'
 "Youcompleteme
 Plugin 'Valloric/YouCompleteMe'
-"Colorthemes
-Plugin 'jnurmine/Zenburn'
 
 filetype plugin indent on    " required
 "All of your Plugins must be added before the following line
@@ -70,14 +68,22 @@ filetype plugin indent on
 "Colors
 "my terminal supports 256 colors
 set t_Co=256
-"set background=dark
+set background=dark
 "Setting my coloscheme
 colorscheme xoria256
-"colorscheme zenburn
 hi normal ctermbg=none
 
 "---------------------------------------------
 "Misc
+
+"commands for editing the holy .vimrc 
+"(user defined command have to start whith an upper case letter)
+if  !exists(":Vimrc")
+	command Vimrc e ~/.vimrc
+endif
+if  !exists(":RefreshVimrc")
+	command RefreshVimrc source ~/.vimrc
+endif
 
 "enable the mouse in all modes
 set mouse=a
