@@ -74,6 +74,11 @@ colorscheme xoria256
 hi normal ctermbg=none
 
 "---------------------------------------------
+"Special file types
+"recognize md files as markdown
+au BufNewFile,BufRead *.{md,markdown} set filetype=markdown
+
+"---------------------------------------------
 "Misc
 
 "commands for editing the holy .vimrc 
