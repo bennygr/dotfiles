@@ -1,4 +1,12 @@
 "---------------------------------------------
+"Creating viminfo file if not there
+let viminfo_file=expand('~/.vim/files/info/viminfo')
+if !filereadable(viminfo_file)
+	echo "Creating viminfo file"
+	!mkdir -p ~/.vim/files/info/ && touch ~/.vim/files/info/viminfo
+endif
+
+"---------------------------------------------
 "Plugin management using Vundle 
 "https://github.com/gmarik/Vundle.vim
 
@@ -45,6 +53,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 "Text alignment 
 Plugin 'godlygeek/tabular'
+"Startify: Vim startscreen
+Plugin 'mhinz/vim-startify'
 "OmniSharp
 "Note: the omni-sharp server has to be build by hand after 
 "the plugin has been installed
@@ -80,6 +90,11 @@ au BufNewFile,BufRead *.{md,markdown} set filetype=markdown
 
 "---------------------------------------------
 "Misc
+
+"Showing Startify  homescreen
+if  !exists(":Home")
+	command Home Startify
+endif
 
 "commands for editing the holy .vimrc 
 "(user defined command have to start whith an upper case letter)
@@ -141,6 +156,10 @@ set showmode
 "vim directory 
 set undofile
 set undodir=~/.vim/undo
+
+"defining viminfo file, to store alot of vim histories
+set viminfo='100,n$HOME/.vim/files/info/viminfo
+
 "---------------------------------------------
 "Spell-Checking
 "z=:		Suggest a word
@@ -250,6 +269,37 @@ set omnifunc=syntaxcomplete#Complete
 "longest: don't autoselect first item in omnicomplete
 "menuone: popup even on only one match
 set completeopt=longest,menuone
+
+"---------------------------------------------
+"Startify home screen
+"header
+let g:startify_custom_header = [
+\'            ____   ____  _                    ',
+\'           |_  _| |_  _|(_)                   ',
+\'             \ \   / /  __   _ .--..--.       ',
+\'              \ \ / /  [  | [ `.-. .-. |      ',
+\'               \ '' /    | |  | | | | | |     ',
+\'                \_/    [___][___||__||__] -- bny.io ツ★ ',
+\'                                              ',
+\'   _________________________________________________________________________________________',
+\'                                              ',
+\'                                              ',
+\'                                              ',
+\]
+
+"bookmarks
+let g:startify_bookmarks = [
+		\'~/.vimrc',
+		\'/etc/apache2/mods-enabled/proxy.conf',
+		\'/etc/apache2/sites-enabled/000-default',
+		\]
+
+"footer
+let g:startify_custom_footer =
+			\ [''] +
+			\ [''] +
+			\ ['   _________________________________________________________________________________________'] +
+			\ [''] + map(split(system('date +"%A, %d %B %Y"'), '\n'), '"   ". v:val')
 
 "---------------------------------------------
 "C# PROGRAMMING
