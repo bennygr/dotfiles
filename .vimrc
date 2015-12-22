@@ -290,6 +290,7 @@ let g:startify_custom_header = [
 "bookmarks
 let g:startify_bookmarks = [
 		\'~/.vimrc',
+		\'~/.bashrc_benny',
 		\'/etc/apache2/mods-enabled/proxy.conf',
 		\'/etc/apache2/sites-enabled/000-default',
 		\]
