@@ -270,6 +270,9 @@ set omnifunc=syntaxcomplete#Complete
 "menuone: popup even on only one match
 set completeopt=longest,menuone
 
+" Preserve selection after indentation
+vmap > >gv
+vmap < <gv
 "---------------------------------------------
 "Startify home screen
 "header
@@ -292,7 +295,7 @@ let g:startify_bookmarks = [
 		\'~/.vimrc',
 		\'~/.bashrc_benny',
 		\'/etc/apache2/mods-enabled/proxy.conf',
-		\'/etc/apache2/sites-enabled/000-default',
+		\'/etc/apache2/sites-enabled/000-default.conf',
 		\]
 
 "footer
