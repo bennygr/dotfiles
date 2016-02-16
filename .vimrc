@@ -108,6 +108,9 @@ endif
 "enable the mouse in all modes
 set mouse=a
 
+"do not wrap long lines
+set nowrap
+
 "Show rownumbers
 set number
 "But let us switch to relative numbers using a
