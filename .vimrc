@@ -142,15 +142,13 @@ endfunc
 set nobackup
 set noswapfile
 set modelines=0
-
-"Indent by 4 tabs
-set tabstop=4 
-"indent with << and >> command
+	
+"code indent
+"expand with space and not with tabs
+set expandtab 
 set shiftwidth=4
-"indent in insert mode
-set softtabstop=4 
-"dont use whitespace 
-set noexpandtab 
+set softtabstop=4
+
 "Show if we are in Insert mode
 set showmode
 
@@ -449,7 +447,7 @@ nmap <script> <silent> <F12> :call ToggleQuickFix()<CR>
 "Switching between absolute and relative line numbers 
 nnoremap <C-n> :call NumberToggle()<cr>
 "Switching between Paste Modes
-nnoremap <C-c> :call PasteToggle()<cr>
+noremap <F9> :call PasteToggle()<cr>
 
 "creating a uuid
 nnoremap <leader>nguid :call CreateGUID()<cr>;
