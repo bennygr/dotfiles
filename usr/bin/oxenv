@@ -1,0 +1,31 @@
+#!/bin/bash
+SESSION=bny
+tmux -2 new-session -d -s $SESSION
+
+#git working space
+tmux rename-window git
+tmux send-keys "cd Workspace/OX/guard " C-m
+tmux send-keys "clear " C-m
+tmux send-keys "git status" C-m
+tmux split-window -h 
+tmux send-keys "cd Workspace/OX/guard " C-m
+tmux send-keys "clear " C-m
+tmux send-keys "tig" C-m
+
+#mysql stuff
+tmux new-window -t $SESSION:2 -n 'mysql'
+
+#irssi
+tmux new-window -t $SESSION:3 -n 'irssi'
+tmux send-keys "irssi" C-m
+
+#htop
+tmux new-window -t $SESSION:4 -n 'htop'
+tmux send-keys "htop" C-m
+
+#a shell
+tmux new-window -t $SESSION:1 -n 'shell'
+
+
+#attach to the new session
+tmux -2 attach-session -t $SESSION
