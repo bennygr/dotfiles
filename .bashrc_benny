@@ -20,6 +20,9 @@ export TERM=screen-256color-bce
 EDITOR=vim
 export EDITOR
 
+#News-Server
+export NNTPSERVER="news.albasani.net"
+
 # aliase
 alias ll='ls -la'
 alias cur='cd ~/Workspace'
@@ -34,8 +37,18 @@ function parse_git_branch() {
   [ -z "$(echo "$STATUS" | grep -e '^ M')"    ] || DIRTY="*"
   [ -z "$(echo "$STATUS" | grep -e '^[MDA]')" ] || DIRTY="${DIRTY}+"
   [ -z "$(git stash list)" ]                    || DIRTY="${DIRTY}^"
-  echo "(->$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* //')$DIRTY)"
+  echo "(⤳ $(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* //')$DIRTY)"
+}
+
+function parse_if_root() {
+  if [ $EUID -eq 0 ]
+  then
+    echo "⚡ "
+  fi
 }
 
 #promt
-PS1='\[\033[0;34m\]\u \[\033[0;37m\]at \[\033[0;34m\]\H \[\033[0;37m\]in \[\033[0;35m\]\w \[\033[0;036m\] $(parse_git_branch) \n\[\033[0;34m\]> \[\033[0m\]'
+PS1='\[\033[0;34m\]\u \e[31m$(parse_if_root)\[\033[0;37m\]at \[\033[0;34m\]\H \[\033[0;37m\]in \[\033[0;35m\]\w \[\033[0;036m\]$(parse_git_branch) \n\[\033[0;34m\]> \[\033[0m\]'
+
+
+

@@ -1,9 +1,8 @@
 #!/bin/bash
 SESSION=bny
-tmux -2 new-session -d -s $SESSION
+tmux -2 new-session -d -s $SESSION 
 
-#git working space
-tmux rename-window git
+#git working space for Guard
 tmux send-keys "cd Workspace/OX/guard " C-m
 tmux send-keys "clear " C-m
 tmux send-keys "git status" C-m
@@ -11,20 +10,39 @@ tmux split-window -h
 tmux send-keys "cd Workspace/OX/guard " C-m
 tmux send-keys "clear " C-m
 tmux send-keys "tig" C-m
+tmux rename-window "OX Guard"
 
-#mysql stuff
-tmux new-window -t $SESSION:2 -n 'mysql'
-
-#irssi
-tmux new-window -t $SESSION:3 -n 'irssi'
-tmux send-keys "irssi" C-m
-
-#htop
-tmux new-window -t $SESSION:4 -n 'htop'
-tmux send-keys "htop" C-m
+#git working space for Middleware
+tmux new-window -t $SESSION:1 -n 'OX Middleware'
+tmux rename-window git Middlware
+tmux send-keys "cd Workspace/OX/backend " C-m
+tmux send-keys "clear " C-m
+tmux send-keys "git status" C-m
+tmux split-window -h 
+tmux send-keys "cd Workspace/OX/backend " C-m
+tmux send-keys "clear " C-m
+tmux send-keys "tig" C-m
 
 #a shell
-tmux new-window -t $SESSION:1 -n 'shell'
+tmux new-window -t $SESSION:2 -n 'shell'
+
+#mysql stuff
+tmux new-window -t $SESSION:3 -n 'mysql'
+
+#irssi
+tmux new-window -t $SESSION:4 -n 'irssi'
+tmux send-keys "irssi" C-m
+
+#slrn
+tmux new-window -t $SESSION:5 -n 'slrn'
+tmux send-keys "slrn" C-m
+
+#htop
+tmux new-window -t $SESSION:6 -n 'htop'
+tmux send-keys "htop" C-m
+
+
+
 
 
 #attach to the new session
