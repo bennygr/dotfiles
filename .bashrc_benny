@@ -35,6 +35,7 @@ function parse_git_branch() {
   STATUS=$(git status --porcelain 2>/dev/null)
   [ $? -eq 128 ] && return
   [ -z "$(echo "$STATUS" | grep -e '^M')"    ] || DIRTY="★ "
+  [ -z "$(echo "$STATUS" | grep -e '^[M]')"    ] || DIRTY="★ "
   [ -z "$(echo "$STATUS" | grep -e '^[D]')" ] || DIRTY="${DIRTY}- "
   [ -z "$(echo "$STATUS" | grep -e '^[A]')" ] || DIRTY="${DIRTY}+ "
   [ -z "$(echo "$STATUS" | grep -e '^[R]')" ] || DIRTY="${DIRTY}r "
