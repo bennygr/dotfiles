@@ -173,6 +173,8 @@ set viminfo='100,n$HOME/.vim/files/info/viminfo
 autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us
 "and textfiles
 autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_us
+"and yaml files
+autocmd BufRead,BufNewFile *.yaml setlocal spell spelllang=en_us
 "---------------------------------------------
 "options for the lightline status bar plugin 
 "needed to display the status bar
