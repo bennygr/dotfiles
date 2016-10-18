@@ -340,35 +340,42 @@ augroup omnisharp_commands
     "show type information automatically when the cursor stops moving
     autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
 
-	"Goto definition 
+    "Goto definition 
     autocmd FileType cs nnoremap <leader>gd :OmniSharpGotoDefinition<cr>
 
-	"Find implementation for interfaces and abstract classes
+    "Find implementation for interfaces and abstract classes
     autocmd FileType cs nnoremap <leader>fi :OmniSharpFindImplementations<cr>
 
-	"Finds the usage of symbol
+    "Find tpes
+    autocmd FileType cs nnoremap <leader>ft :OmniSharpFindType<cr>
+
+    "outline = find members
+    autocmd FileType cs nnoremap <leader>fo :OmniSharpFindMembers<cr>
+
+    "Finds the usage of symbol
     autocmd FileType cs nnoremap <leader>fu :OmniSharpFindUsages<cr>
 	
-	"shows a list of code actions
+    "shows a list of code actions
     autocmd FileType cs nnoremap <leader>ca :OmniSharpGetCodeActions<cr>
-	autocmd FileType cs vnoremap <leader>ca :call OmniSharp#GetCodeActions('visual')<cr>
 
-	"Code format
-	autocmd FileType cs nnoremap <leader>cf :OmniSharpCodeFormat<cr>
+    autocmd FileType cs vnoremap <leader>ca :call OmniSharp#GetCodeActions('visual')<cr>
 
-	"Renaming
-	"rename with dialog
-	autocmd FileType cs nnoremap <leader>rn :OmniSharpRename<cr>
+    "Code format
+    autocmd FileType cs nnoremap <leader>cf :OmniSharpCodeFormat<cr>
 
-	"Shows the type of a symbol
+    "Renaming
+    "rename with dialog
+    autocmd FileType cs nnoremap <leader>rn :OmniSharpRename<cr>
+
+    "Shows the type of a symbol
     autocmd FileType cs nnoremap <leader>tt :OmniSharpTypeLookup<cr>
 
     " cursor can be anywhere on the line containing an issue
     autocmd FileType cs nnoremap <leader>xx :OmniSharpFixIssue<cr>
     autocmd FileType cs nnoremap <leader>xu :OmniSharpFixUsings<cr>
 
-	"Automatically add new cs files to the nearest project on save
-	autocmd BufWritePost *.cs call OmniSharp#AddToProject()
+    "Automatically add new cs files to the nearest project on save
+    autocmd BufWritePost *.cs call OmniSharp#AddToProject()
 augroup END
 
 
