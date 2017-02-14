@@ -110,6 +110,8 @@ set mouse=a
 
 "do not wrap long lines
 set nowrap
+"..but if enabled, show a nice icon
+set showbreak =↪__
 
 "Show rownumbers
 set number
