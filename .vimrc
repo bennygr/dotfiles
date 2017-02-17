@@ -105,6 +105,11 @@ if  !exists(":RefreshVimrc")
 	command RefreshVimrc source ~/.vimrc
 endif
 
+"JSON formattingn the whole content
+if !exists("TOjson")
+    command TOjson %!python -m json.tool
+endif
+
 "enable the mouse in all modes
 set mouse=a
 
