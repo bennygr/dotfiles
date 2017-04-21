@@ -63,6 +63,8 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'scrooloose/syntastic'
 "Youcompleteme
 Plugin 'Valloric/YouCompleteMe'
+"A-Plugin for C++
+Plugin 'vim-scripts/a.vim'
 
 filetype plugin indent on    " required
 "All of your Plugins must be added before the following line
