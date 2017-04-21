@@ -41,6 +41,10 @@ tmux send-keys "slrn" C-m
 tmux new-window -t $SESSION:6 -n 'htop'
 tmux send-keys "htop" C-m
 
+#ssh to vm
+tmux new-window -t $SESSION:7 -n 'vm'
+tmux send-keys "ssh test1@vm" C-m
+
 
 
 
