@@ -54,5 +54,6 @@ function parse_if_root() {
 #promt
 PS1='\[\033[0;34m\]\u \e[31m$(parse_if_root)\[\033[0;37m\]at \[\033[0;34m\]\H \[\033[0;37m\]in \[\033[0;35m\]\w \[\033[0;036m\]$(parse_git_branch) \n\[\033[0;34m\]> \[\033[0m\]'
 
-
-
+#do not send XON/XOFF (CTRL+S/CTRL+Q) to pause/resume terminal; 
+#CTRL+S can now be used for bash history search
+stty -ixon
