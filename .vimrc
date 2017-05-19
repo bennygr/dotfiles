@@ -399,7 +399,8 @@ augroup eclim_commands
 
 	"Import undefined types, remove unused imports, sort and format imports.
 	"command Jorg JavaImportOrganize
-    autocmd FileType java nnoremap <leader>xu :JavaImportOrganize<cr>
+        autocmd FileType java nnoremap <leader>xu :JavaImportOrganize<cr>
+
 	"Show suggstins for syntax errors
 	autocmd FileType java nnoremap <leader>xx :JavaCorrect<cr>
 
@@ -491,3 +492,6 @@ map tp :tabprevious<CR>
 map tn :tabnext<CR>
 map tq :tabclose<CR>
 map tqq :tabclose!<CR>
+
+"---------------------------------------------
+"EOF
