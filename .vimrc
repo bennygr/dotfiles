@@ -62,9 +62,10 @@ Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'scrooloose/syntastic'
 "Youcompleteme
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 "A-Plugin for C++
 Plugin 'vim-scripts/a.vim'
+Plugin 'Shougo/echodoc.vim'
 
 filetype plugin indent on    " required
 "All of your Plugins must be added before the following line
@@ -157,9 +158,6 @@ set modelines=0
 set expandtab 
 set shiftwidth=4
 set softtabstop=4
-
-"Show if we are in Insert mode
-set showmode
 
 "Enable undo after closing files, 
 "and save the undo files in the 
@@ -277,10 +275,12 @@ set nofoldenable
 :hi link htmlLink NONE
 
 "OmniComplete
-set omnifunc=syntaxcomplete#Complete
+"set omnifunc=syntaxcomplete#Complete
 "longest: don't autoselect first item in omnicomplete
 "menuone: popup even on only one match
 set completeopt=longest,menuone
+"Show method signature using the echodoc plugin
+let g:echodoc_enable_at_startup = 1
 
 " Preserve selection after indentation
 vmap > >gv
@@ -337,10 +337,10 @@ nnoremap <F6> :Make<cr>
 augroup omnisharp_commands
     autocmd!
 
-	"This is the error format for msbuild/xbuild
-	"In addition you should call xbuild with /property:GenerateFullPaths=true
-	"in order to generate full paths where vim can jump to
-	:set errorformat=\ %#%f(%l\\\,%c):\ %m
+    "This is the error format for msbuild/xbuild
+    "In addition you should call xbuild with /property:GenerateFullPaths=true
+    "in order to generate full paths where vim can jump to
+    :set errorformat=\ %#%f(%l\\\,%c):\ %m
 
     "Set autocomplete function to OmniSharp (if not using YouCompleteMe completion plugin)
     autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
@@ -380,6 +380,8 @@ augroup omnisharp_commands
 
     "Shows the type of a symbol
     autocmd FileType cs nnoremap <leader>tt :OmniSharpTypeLookup<cr>
+
+    autocmd FileType cs nnoremap <leader>? :OmniSharpDocumentation<cr>
 
     " cursor can be anywhere on the line containing an issue
     autocmd FileType cs nnoremap <leader>xx :OmniSharpFixIssue<cr>
@@ -431,9 +433,6 @@ set hlsearch
 "let mapleader = ","
 let mapleader = "\<Space>"
 
-"Smart semicolon: adding semicolon at the end of the line
-inoremap <leader>, <C-o>A;
-
 "Ulti snip key mappings
 let g:UltiSnipsExpandTrigger="<c-b>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -441,7 +440,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 "Omni completion
 "allowing enter to accept suggestions
-:inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+":inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 "going to previous/next issue
 map <F3> :cp<CR>
@@ -470,9 +469,6 @@ noremap <F9> :call PasteToggle()<cr>
 
 "creating a uuid
 nnoremap <leader>nguid :call CreateGUID()<cr>;
-
-inoremap <leader>, <C-o>A;<ESC>
-nnoremap <leader>, <C-o>A;<ESC>
 
 "Change Size of Windows made with :sp and :vsp 
 map ( : vertical res +7<CR>

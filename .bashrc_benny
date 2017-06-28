@@ -27,6 +27,7 @@ export NNTPSERVER="news.albasani.net"
 alias ll='ls -la'
 alias cur='cd ~/Workspace'
 alias wetter='curl http://wttr.in/siegen'
+alias Vimrc=' vim ~/.vimrc '
 
 
 #parse the state of the git branch
