@@ -20,6 +20,11 @@ export TERM=screen-256color-bce
 EDITOR=vim
 export EDITOR
 
+
+#using gpg-agent for SSH authentication
+gpg-connect-agent 2>/dev/null /bye  # make sure gpg-agent is runnign
+export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
+
 #News-Server
 export NNTPSERVER="news.albasani.net"
 
