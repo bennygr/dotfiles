@@ -41,12 +41,12 @@ function parse_git_branch() {
   STATUS=$(git status --porcelain 2>/dev/null)
   [ $? -eq 128 ] && return
   [ -z "$(echo "$STATUS" | grep -e '^M')"    ] || DIRTY="≛ "
-  [ -z "$(echo "$STATUS" | grep -e '^ M')"    ] || DIRTY="★ "
-  [ -z "$(echo "$STATUS" | grep -e '^[D]')" ] || DIRTY="${DIRTY}- "
+  [ -z "$(echo "$STATUS" | grep -e '^ M')"    ] || DIRTY="⚫ "
+  [ -z "$(echo "$STATUS" | grep -e '^[D]')" ] || DIRTY="${DIRTY}🗑 "
   [ -z "$(echo "$STATUS" | grep -e '^[A]')" ] || DIRTY="${DIRTY}+ "
-  [ -z "$(echo "$STATUS" | grep -e '^[R]')" ] || DIRTY="${DIRTY}r "
+  [ -z "$(echo "$STATUS" | grep -e '^[R]')" ] || DIRTY="${DIRTY}🠆 "
   [ -z "$(git stash list)" ]                    || DIRTY="${DIRTY}☰ "
-  echo "( ⤳ $(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* //') $DIRTY)"
+  echo "($DIRTY⎇: $(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* //'))"
 }
 
 #parses if user is root
@@ -57,8 +57,13 @@ function parse_if_root() {
   fi
 }
 
-#promt
-PS1='\[\033[0;34m\]\u \e[31m$(parse_if_root)\[\033[0;37m\]at \[\033[0;34m\]\H \[\033[0;37m\]in \[\033[0;35m\]\w \[\033[0;036m\]$(parse_git_branch) \n\[\033[0;34m\]> \[\033[0m\]'
+# Right part of the bash promp
+function prompt_right(){
+    printf "%*s" $COLUMNS "$(parse_git_branch)"
+}
+
+#prompt
+PS1='\[\[\033[1;35m\]$(tput sc;  prompt_right; tput rc)\]\[\033[0;34m\]\u \e[31m$(parse_if_root)\[\033[0;37m\]at  \[\033[0;34m\]\H \[\033[0;37m\]in \[\033[0;35m\]\w \[\033[0;036m\]\n \e[31m★ >\[\033[0m\] '
 
 #do not send XON/XOFF (CTRL+S/CTRL+Q) to pause/resume terminal; 
 #CTRL+S can now be used for bash history search
