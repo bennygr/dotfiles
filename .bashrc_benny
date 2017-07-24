@@ -13,16 +13,15 @@ done
 PATH=$PATH:~/usr/bin
 export PATH
 
-#Set to 256 term in order to allow tmux to displa vim color nice
+#Set to 256 term to allow tmux to display vim colors nicely
 export TERM=screen-256color-bce
 
 # I love VIM
 EDITOR=vim
 export EDITOR
 
-
 #using gpg-agent for SSH authentication
-gpg-connect-agent 2>/dev/null /bye  # make sure gpg-agent is runnign
+gpg-connect-agent 2>/dev/null /bye  # make sure gpg-agent is running
 export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
 
 #News-Server
@@ -63,7 +62,7 @@ function prompt_right(){
 }
 
 #prompt
-PS1='\[\[\033[1;35m\]$(tput sc;  prompt_right; tput rc)\]\[\033[0;34m\]\u \e[31m$(parse_if_root)\[\033[0;37m\]at  \[\033[0;34m\]\H \[\033[0;37m\]in \[\033[0;34m\]\w\n\[\033[1;35m\]⤷\[\033[0m\] '
+PS1='\[\033[1;35m\]$(tput sc;  prompt_right; tput rc)\]\[\033[0;34m\]\u \e[31m$(parse_if_root)\[\033[0;37m\]at  \[\033[0;34m\]\H \[\033[0;37m\]in \[\033[0;34m\]\w\n\[\033[1;35m\]⤷\[\033[0m\] '
 
 #do not send XON/XOFF (CTRL+S/CTRL+Q) to pause/resume terminal; 
 #CTRL+S can now be used for bash history search
