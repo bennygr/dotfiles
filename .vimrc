@@ -64,7 +64,7 @@ Plugin 'scrooloose/syntastic'
 "Youcompleteme
 "Plugin 'Valloric/YouCompleteMe'
 "A-Plugin for C++
-Plugin 'vim-scripts/a.vim'
+"Plugin 'vim-scripts/a.vim'
 Plugin 'Shougo/echodoc.vim'
 
 filetype plugin indent on    " required
@@ -234,7 +234,7 @@ endfunction
 function! MyFugitive()
 	if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
 		let _ = fugitive#head()
-		return strlen(_) ? '↝ Branch '._ : ''
+		return strlen(_) ? '⎇  Branch '._ : ''
 	endif
 	return ''
 endfunction
