@@ -56,14 +56,12 @@ function parse_if_root() {
   fi
 }
 
-# Right part of the bash promp
-function prompt_right(){
-    printf "%*s" $COLUMNS "$(parse_git_branch)"
-}
-
 #prompt
-PS1='\[\033[1;35m\]$(tput sc;  prompt_right; tput rc)\]\[\033[0;34m\]\u \e[31m$(parse_if_root)\[\033[0;37m\]at  \[\033[0;34m\]\H \[\033[0;37m\]in \[\033[0;34m\]\w\n\[\033[1;35m\]⤷\[\033[0m\] '
+PS1='\[\033[0;34m\]\u \e[31m$(parse_if_root)\[\033[0;37m\]at \[\033[0;34m\]\H \[\033[0;37m\]in \[\033[0;34m\]\w \[\033[1;35m\]\]$(parse_git_branch)\n\[\033[1;35m\]⤷ \[\033[0m\]'
 
 #do not send XON/XOFF (CTRL+S/CTRL+Q) to pause/resume terminal; 
 #CTRL+S can now be used for bash history search
 stty -ixon
+
+
+
