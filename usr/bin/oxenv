@@ -30,8 +30,8 @@ tmux new-window -t $SESSION:2 -n 'shell'
 tmux new-window -t $SESSION:3 -n 'mysql'
 
 #irssi
-tmux new-window -t $SESSION:4 -n 'irssi'
-tmux send-keys "irssi" C-m
+tmux new-window -t $SESSION:4 -n 'irc'
+tmux send-keys "weechat" C-m
 
 #slrn
 tmux new-window -t $SESSION:5 -n 'slrn'
