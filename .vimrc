@@ -340,7 +340,7 @@ augroup omnisharp_commands
     "This is the error format for msbuild/xbuild
     "In addition you should call xbuild with /property:GenerateFullPaths=true
     "in order to generate full paths where vim can jump to
-    :set errorformat=\ %#%f(%l\\\,%c):\ %m
+    autocmd FileType cs set errorformat=\ %#%f(%l\\\,%c):\ %m
 
     "Set autocomplete function to OmniSharp (if not using YouCompleteMe completion plugin)
     autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
