@@ -32,6 +32,8 @@ alias ll='ls -la'
 alias cur='cd ~/Workspace'
 alias wetter='curl http://wttr.in/siegen'
 alias Vimrc=' vim ~/.vimrc '
+alias sdir='echo $(pwd) > ~/.cur'
+alias gdir='cd $(cat ~/.cur)'
 
 
 #parse the state of the git branch
