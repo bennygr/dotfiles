@@ -29,7 +29,7 @@ export NNTPSERVER="news.albasani.net"
 
 # aliase
 alias ll='ls -la'
-alias cur='cd ~/Workspace'
+alias cur='cd ~/Workspace/Leadwerks/project117/'
 alias wetter='curl http://wttr.in/siegen'
 alias Vimrc=' vim ~/.vimrc '
 alias sdir='echo $(pwd) > ~/.cur'

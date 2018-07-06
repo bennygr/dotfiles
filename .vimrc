@@ -58,14 +58,14 @@ Plugin 'mhinz/vim-startify'
 "OmniSharp
 "Note: the omni-sharp server has to be build by hand after 
 "the plugin has been installed
-Plugin 'OmniSharp/omnisharp-vim'
-Plugin 'tpope/vim-dispatch'
-Plugin 'scrooloose/syntastic'
+"Plugin 'OmniSharp/omnisharp-vim'
+"Plugin 'tpope/vim-dispatch'
+"Plugin 'scrooloose/syntastic'
 "Youcompleteme
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 "A-Plugin for C++
 "Plugin 'vim-scripts/a.vim'
-Plugin 'Shougo/echodoc.vim'
+"Plugin 'Shougo/echodoc.vim'
 
 filetype plugin indent on    " required
 "All of your Plugins must be added before the following line
@@ -331,9 +331,24 @@ nnoremap <leader>5 :OmniSharpReloadSolution<cr>
 " Get Code Issues and syntax errors
 let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
 
-"Make
+
+"
 nnoremap <F5> :OmniSharpBuildAsync<cr>
-nnoremap <F6> :Make<cr>
+"make for C++ 
+nnoremap <F6> :make<cr>
+"clang tooling needed by YouCompleteMe
+"make with bear which will also build database for clang tooling
+"create a clean build database by cleaning first
+"https://github.com/rizsotto/Bear
+nnoremap <F7> :!make clean && bear make<cr>
+
+augroup ycm_commands
+    "Auto fixing minor issues
+    autocmd FileType h nnoremap <leader>xx :YcmCompleter FixIt<CR>
+    autocmd FileType cpp nnoremap <leader>xx :YcmCompleter FixIt<CR>
+augroup END
+
+
 augroup omnisharp_commands
     autocmd!
 
