@@ -77,7 +77,7 @@ bindsym $super+Shift+space focus mode_toggle
 #workspace names
 set $ws_www 1:
 set $ws_work 2:
-set $ws_work2 3:
+set $ws_work2 3:
 set $ws_chat 4:
 set $ws_music 5:
 set $ws_games 6:
