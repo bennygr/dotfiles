@@ -33,6 +33,8 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'SirVer/ultisnips'
 "My personal snippets
 Plugin 'bennygr/snips'
+"nord colors
+Plugin 'arcticicestudio/nord-vim'
 "The nerdtree plugin
 Plugin 'scrooloose/nerdtree'
 "Tab support for nerdtree
@@ -83,7 +85,8 @@ filetype plugin indent on
 set t_Co=256
 set background=dark
 "Setting my coloscheme
-colorscheme xoria256
+"colorscheme xoria256
+colorscheme nord
 hi normal ctermbg=none
 
 "---------------------------------------------
