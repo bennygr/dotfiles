@@ -1,5 +1,4 @@
-# set modifier
-set $super Mod4
+set $super Mod1
 set $alt Mod1
 
 # set font
@@ -10,11 +9,12 @@ floating_modifier $super
 
 #autostart
 #setting wallpaper
-exec --no-startup-id hsetroot -cover '/home/benny/Bilder/Wallpaper/mike-anderson-66252-unsplash.jpg'
+exec --no-startup-id hsetroot -center '/home/benny/Bilder/Wallpaper/plants_foliage_dark_114255_6016x4016.jpg'
 #settings daemong to load gtk-themes etc
 exec --no-startup-id gnome-settings-daemon &
 #compositor for desktop effects like transparency
 exec --no-startup-id compton -b
+
 
 # start a terminal
 bindsym $super+Return exec i3-sensible-terminal
@@ -25,11 +25,14 @@ bindsym $super+e exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
 # kill focused window
 bindsym $super+q kill
 
+
 # change focus
 bindsym $super+h focus left
 bindsym $super+j focus down
 bindsym $super+k focus up
 bindsym $super+l focus right
+bindsym $super+u focus parent
+bindsym $super+c focus child
 
 # move focused window
 bindsym $super+Shift+h move left 
@@ -50,19 +53,24 @@ bindsym $super+f fullscreen toggle
 bindsym $super+t layout tabbed
 bindsym $super+s layout toggle split
 # toggle tiling / floating
-bindsym $super+space floating toggle
+bindsym $super+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $super+Shift+space focus mode_toggle
+bindsym $super+space focus mode_toggle
 
 #workspace names
 set $ws_www 1:
 set $ws_work 2:
 set $ws_work2 3:
-set $ws_chat 4:
-set $ws_music 5:
-set $ws_games 6:
-set $ws_vms 7:
+set $ws_chat 4:
+set $ws_irc 5:
+set $ws_music 6:
+set $ws_games 7:
+set $ws_vms 8:
+
+#for_window [class=".*"] title_format "bla"
+#for_window [class=".*"] title_format "%class"
+bindsym $super+o exec i3-input -F 'title_format "%s"' -P 'title: '
 
 #app assignments
 #firefox
@@ -82,10 +90,10 @@ bindsym $super+1 workspace $ws_www
 bindsym $super+2 workspace $ws_work
 bindsym $super+3 workspace $ws_work2
 bindsym $super+4 workspace $ws_chat
-bindsym $super+5 workspace $ws_music
-bindsym $super+6 workspace $ws_games
-bindsym $super+7 workspace $ws_vms
-bindsym $super+8 workspace 8
+bindsym $super+5 workspace $ws_irc
+bindsym $super+6 workspace $ws_music
+bindsym $super+7 workspace $ws_games
+bindsym $super+8 workspace $ws_vms
 bindsym $super+9 workspace 9
 
 # workspace back and forth
@@ -97,16 +105,15 @@ bindsym $super+Shift+1 move container to workspace $ws_www
 bindsym $super+Shift+2 move container to workspace $ws_work
 bindsym $super+Shift+3 move container to workspace $ws_work2
 bindsym $super+Shift+4 move container to workspace $ws_chat
-bindsym $super+Shift+5 move container to workspace $ws_music
-bindsym $super+Shift+6 move container to workspace $ws_games
-bindsym $super+Shift+7 move container to workspace $ws_vms
-bindsym $super+Shift+8 move container to workspace 8
+bindsym $super+Shift+5 move container to workspace $ws_irc
+bindsym $super+Shift+6 move container to workspace $ws_music
+bindsym $super+Shift+7 move container to workspace $ws_games
+bindsym $super+Shift+8 move container to workspace $ws_vms
 bindsym $super+Shift+9 move container to workspace 9
 
-# rename workspaces
-#bindsym $super+Shift+t exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 # goto named workspace
 bindsym $super+w exec i3-input -F 'workspace "%s"' -P 'Workspace: '
+# move container to workspace
 bindsym $super+Shift+w exec i3-input -F 'move container to workspace "%s"' -P 'Move to workspace: '
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -130,7 +137,7 @@ bar {
     #font awesome seems only to work with version 4 (version 5 is splitted inton mulitple ttfs files)
     #Download from https://github.com/FortAwesome/Font-Awesome/tree/fa-4 
     # unzip and copy fontawesome-webfont.ttf to ~/.local/share/fonts/truetype
-    font pango: Terminus 8 ,FontAwesome 8
+    font pango: Terminus 8 ,FontAwesome 10
 
     colors {
         background #2f343f
@@ -147,21 +154,19 @@ bar {
     strip_workspace_numbers yes
 }
 
+focus_wrapping no
+default_border pixel
+
 # window rules, you can find the window class using xprop
-for_window [class=".*"] border pixel 4
-assign [class=URxvt] 1
-assign [class=Firefox|Transmission-gtk] 2
-assign [class=Thunar|File-roller] 3
-assign [class=Geany|Evince|Gucharmap|Soffice|libreoffice*] 4
-assign [class=Audacity|Vlc|mpv|Ghb|Xfburn|Gimp*|Inkscape] 5
-assign [class=Lxappearance|System-config-printer.py|Lxtask|GParted|Pavucontrol|Exo-helper*|Lxrandr|Arandr] 6
-for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol] floating enable
-for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
-for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
+#for_window [class=".*"] border 1 pixel
+#assign [class=Firefox|Transmission-gtk] 2
+#for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol] floating enable
+#for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
+#for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
 
 # colour of border, background, text, indicator, and child_border
 client.focused			#bf616a #2f343f #d8dee8 #bf616a #d8dee8
-client.focused_inactive	#2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.focused_inactive	        #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.unfocused		#2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.urgent			#2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.placeholder		#2f343f #2f343f #d8dee8 #2f343f #2f343f
