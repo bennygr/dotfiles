@@ -9,11 +9,13 @@ floating_modifier $super
 
 #autostart
 #setting wallpaper
-exec --no-startup-id hsetroot -center '/home/benny/Bilder/Wallpaper/plants_foliage_dark_114255_6016x4016.jpg'
+exec --no-startup-id hsetroot -full '/home/benny/Bilder/Wallpaper/ultrawide-wallpaper-images-27.jpg'
 #settings daemong to load gtk-themes etc
 exec --no-startup-id gnome-settings-daemon &
 #compositor for desktop effects like transparency
 exec --no-startup-id compton -b
+#dropbox
+exec --no-startup-id dropbox start 
 
 
 # start a terminal
@@ -69,7 +71,7 @@ set $ws_games 7:
 set $ws_vms 8:
 
 #for_window [class=".*"] title_format "bla"
-#for_window [class=".*"] title_format "%class"
+for_window [class=".*"] title_format "%class"
 bindsym $super+o exec i3-input -F 'title_format "%s"' -P 'title: '
 
 #app assignments
