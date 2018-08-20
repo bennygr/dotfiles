@@ -26,6 +26,9 @@ bindsym $super+Return exec i3-sensible-terminal
 # start dmenu (a program launcher)
 bindsym $super+e exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
 
+#not following the mouse
+focus_follows_mouse no
+
 # kill focused window
 bindsym $super+q kill
 
@@ -85,6 +88,9 @@ for_window [class="Spotify"] resize set 2000 px 1200 px
 #steam
 for_window [class="Steam"] move to workspace $ws_games
 for_window [class="Steam"] floating enable
+#Virtual box
+for_window [class="VirtualBox"] floating enable
+
 
 # switch to workspace
 bindsym $alt+Control+Right workspace next
