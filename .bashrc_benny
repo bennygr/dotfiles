@@ -20,9 +20,10 @@ export TERM=screen-256color-bce
 EDITOR=vim
 export EDITOR
 
-#using gpg-agent for SSH authentication
-gpg-connect-agent 2>/dev/null /bye  # make sure gpg-agent is running
-export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
+#using gpg-agent for SSH authentication 
+gpg-connect-agent 2>/dev/null /bye  # make sure gpg-agent is running not already started by systemd
+#get the ssh socket from gpg
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 #News-Server
 export NNTPSERVER="news.albasani.net"
