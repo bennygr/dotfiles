@@ -11,13 +11,14 @@ floating_modifier $super
 #setting wallpaper
 exec --no-startup-id hsetroot -full '/home/benny/Bilder/Wallpaper/ultrawide-wallpaper-images-27.jpg'
 #settings daemong to load gtk-themes etc
-exec --no-startup-id gnome-settings-daemon &
+#exec --no-startup-id gnome-settings-daemon &
 #compositor for desktop effects like transparency
 exec --no-startup-id compton -b
-#dropbox
-exec --no-startup-id dropbox start 
 #applets
 exec --no-startup-id nm-applet
+exec --no-startup-id pnmixer
+#dropbox
+exec --no-startup-id dropbox start 
 
 
 # start a terminal
@@ -28,6 +29,8 @@ bindsym $super+e exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
 
 #not following the mouse
 focus_follows_mouse no
+
+bindsym $super+F2 exec thunar
 
 # kill focused window
 bindsym $super+q kill
@@ -78,19 +81,15 @@ set $ws_vms 7:
 for_window [class=".*"] title_format "%class"
 bindsym $super+o exec i3-input -F 'title_format "%s"' -P 'title: '
 
-#app assignments
-#firefox
+#APPS
 assign [class="Firefox"] $ws_www
-#spotify
 for_window [class="Spotify"] move to workspace $ws_music
 for_window [class="Spotify"] floating enable
 for_window [class="Spotify"] resize set 2000 px 1200 px
-#steam
 for_window [class="Steam"] move to workspace $ws_games
 for_window [class="Steam"] floating enable
-#Virtual box
 for_window [class="VirtualBox"] floating enable
-
+for_window [class="Rambox"] floating enable
 
 # switch to workspace
 bindsym $alt+Control+Right workspace next
