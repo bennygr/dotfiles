@@ -43,10 +43,10 @@ function parse_git_branch() {
   STATUS=$(git status --porcelain 2>/dev/null)
   [ $? -eq 128 ] && return
   [ -z "$(echo "$STATUS" | grep -e '^M')"    ] || DIRTY="≛ "
-  [ -z "$(echo "$STATUS" | grep -e '^ M')"    ] || DIRTY="⚫ "
-  [ -z "$(echo "$STATUS" | grep -e '^[D]')" ] || DIRTY="${DIRTY}🗑 "
+  [ -z "$(echo "$STATUS" | grep -e '^ M')"    ] || DIRTY="• "
+  [ -z "$(echo "$STATUS" | grep -e '^[D]')" ] || DIRTY="${DIRTY}✕ "
   [ -z "$(echo "$STATUS" | grep -e '^[A]')" ] || DIRTY="${DIRTY}+ "
-  [ -z "$(echo "$STATUS" | grep -e '^[R]')" ] || DIRTY="${DIRTY}🠆 "
+  [ -z "$(echo "$STATUS" | grep -e '^[R]')" ] || DIRTY="${DIRTY}♻ "
   [ -z "$(git stash list)" ]                    || DIRTY="${DIRTY}☰ "
   echo "($DIRTY⎇: $(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* //'))"
 }
@@ -60,7 +60,7 @@ function parse_if_root() {
 }
 
 #prompt
-PS1='\[\033[0;34m\]\u \e[31m$(parse_if_root)\[\033[0;37m\]at \[\033[0;34m\]\H \[\033[0;37m\]in \[\033[0;34m\]\w \[\033[1;35m\]\]$(parse_git_branch)\n\[\033[1;35m\]⤷ \[\033[0m\]'
+PS1='\[\033[0;34m\]\u \e[31m$(parse_if_root)\[\033[0;37m\]at \[\033[0;34m\]\H \[\033[0;37m\]in \[\033[0;34m\]\w \[\033[1;35m\]$(parse_git_branch)\n\[\033[1;35m\]⤷ \[\033[0m\]'
 
 #do not send XON/XOFF (CTRL+S/CTRL+Q) to pause/resume terminal; 
 #CTRL+S can now be used for bash history search
