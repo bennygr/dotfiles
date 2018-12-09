@@ -20,6 +20,12 @@ export TERM=screen-256color-bce
 EDITOR=vim
 export EDITOR
 
+#some ruby stuff
+#put the tuby gems in this directory
+export GEM_HOME=$HOME/usr/ruby/gems
+#add ruby gems to my path
+export PATH=$HOME/usr/ruby/gems/bin:$PATH
+
 #using gpg-agent for SSH authentication 
 gpg-connect-agent 2>/dev/null /bye  # make sure gpg-agent is running not already started by systemd
 #get the ssh socket from gpg
