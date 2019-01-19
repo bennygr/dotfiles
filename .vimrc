@@ -67,7 +67,7 @@ Plugin 'mhinz/vim-startify'
 Plugin 'Valloric/YouCompleteMe'
 "A-Plugin for C++
 "Plugin 'vim-scripts/a.vim'
-"Plugin 'Shougo/echodoc.vim'
+Plugin 'Shougo/echodoc.vim'
 
 filetype plugin indent on    " required
 "All of your Plugins must be added before the following line
@@ -262,6 +262,11 @@ function! MyMode()
 	return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction  
 
+
+"mapping 
+"let mapleader = ","
+let mapleader = "\<Space>"
+
 "---------------------------------------------
 "Misc settings for Programming
 "auto indent code
@@ -323,112 +328,25 @@ let g:startify_custom_footer =
 "---------------------------------------------
 "C# PROGRAMMING
 "OmniSharp - for C# programming
-" this setting controls how long to wait (in ms) before fetching type / symbol
-" information under the cursor
-set updatetime=100
-" do not ask when changing buffers; for example when renaming files
-set hidden
 
-"Reloading a solution file
-nnoremap <leader>5 :OmniSharpReloadSolution<cr>
 " Get Code Issues and syntax errors
-let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
+"let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
 
 
-"
-nnoremap <F5> :OmniSharpBuildAsync<cr>
 "make for C++ 
 nnoremap <F6> :make<cr>
-"clang tooling needed by YouCompleteMe
-"make with bear which will also build database for clang tooling
-"create a clean build database by cleaning first
-"https://github.com/rizsotto/Bear
-nnoremap <F7> :!make clean && bear make<cr>
 
-augroup ycm_commands
-    "Auto fixing minor issues
-    autocmd FileType h nnoremap <leader>xx :YcmCompleter FixIt<CR>
-    autocmd FileType cpp nnoremap <leader>xx :YcmCompleter FixIt<CR>
-augroup END
+nnoremap <leader>xx :YcmCompleter FixIt<CR>
+nnoremap <leader>gd :YcmCompleter GoTo<CR>
 
+let g:ycm_error_symbol = '▶'
+let g:ycm_warning_symbol = '‣'
 
-augroup omnisharp_commands
-    autocmd!
+"This is the error format for msbuild/xbuild
+"In addition you should call xbuild with /property:GenerateFullPaths=true
+"in order to generate full paths where vim can jump to
+autocmd FileType cs set errorformat=\ %#%f(%l\\\,%c):\ %m
 
-    "This is the error format for msbuild/xbuild
-    "In addition you should call xbuild with /property:GenerateFullPaths=true
-    "in order to generate full paths where vim can jump to
-    autocmd FileType cs set errorformat=\ %#%f(%l\\\,%c):\ %m
-
-    "Set autocomplete function to OmniSharp (if not using YouCompleteMe completion plugin)
-    autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-	
-    "automatic syntax check on events (TextChanged requires Vim 7.4)
-    autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
-	
-    "show type information automatically when the cursor stops moving
-    autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
-
-    "Goto definition 
-    autocmd FileType cs nnoremap <leader>gd :OmniSharpGotoDefinition<cr>
-
-    "Find implementation for interfaces and abstract classes
-    autocmd FileType cs nnoremap <leader>fi :OmniSharpFindImplementations<cr>
-
-    "Find tpes
-    autocmd FileType cs nnoremap <leader>ft :OmniSharpFindType<cr>
-
-    "outline = find members
-    autocmd FileType cs nnoremap <leader>fo :OmniSharpFindMembers<cr>
-
-    "Finds the usage of symbol
-    autocmd FileType cs nnoremap <leader>fu :OmniSharpFindUsages<cr>
-	
-    "shows a list of code actions
-    autocmd FileType cs nnoremap <leader>ca :OmniSharpGetCodeActions<cr>
-
-    autocmd FileType cs vnoremap <leader>ca :call OmniSharp#GetCodeActions('visual')<cr>
-
-    "Code format
-    autocmd FileType cs nnoremap <leader>cf :OmniSharpCodeFormat<cr>
-
-    "Renaming
-    "rename with dialog
-    autocmd FileType cs nnoremap <leader>rn :OmniSharpRename<cr>
-
-    "Shows the type of a symbol
-    autocmd FileType cs nnoremap <leader>tt :OmniSharpTypeLookup<cr>
-
-    autocmd FileType cs nnoremap <leader>? :OmniSharpDocumentation<cr>
-
-    " cursor can be anywhere on the line containing an issue
-    autocmd FileType cs nnoremap <leader>xx :OmniSharpFixIssue<cr>
-    autocmd FileType cs nnoremap <leader>xu :OmniSharpFixUsings<cr>
-
-    "Automatically add new cs files to the nearest project on save
-    autocmd BufWritePost *.cs call OmniSharp#AddToProject()
-augroup END
-
-
-augroup eclim_commands
-	"using omnifunc <c-x>+<c-o> instead of <c-u>
-	let g:EclimCompletionMethod = 'omnifunc'
-
-	"Rename the element under the cursor
-	autocmd FileType java nnoremap <leader>rn :JavaRename<cr>
-
-	"Import undefined types, remove unused imports, sort and format imports.
-	"command Jorg JavaImportOrganize
-        autocmd FileType java nnoremap <leader>xu :JavaImportOrganize<cr>
-
-	"Show suggstins for syntax errors
-	autocmd FileType java nnoremap <leader>xx :JavaCorrect<cr>
-
-augroup END
-
-"-Javascript--------------------------------------------
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS 
-"- See more at: https://docs.oseems.com/general/application/vim/auto-complete-javascript#sthash.Bq4MNdGy.dpuf
 "---------------------------------------------
 "NERD TREDD
 "Show Nerdtree  with F2
@@ -446,10 +364,6 @@ set hlsearch
 
 "---------------------------------------------
 "My general key mappings
-
-"mapping 
-"let mapleader = ","
-let mapleader = "\<Space>"
 
 "Ulti snip key mappings
 let g:UltiSnipsExpandTrigger="<c-b>"
