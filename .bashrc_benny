@@ -27,9 +27,10 @@ export GEM_HOME=$HOME/usr/ruby/gems
 export PATH=$HOME/usr/ruby/gems/bin:$PATH
 
 #using gpg-agent for SSH authentication 
-gpg-connect-agent 2>/dev/null /bye  # make sure gpg-agent is running not already started by systemd
-#get the ssh socket from gpg
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+GPG_TTY=$(/usr/bin/tty)
+SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+export GPG_TTY SSH_AUTH_SOCK
+gpgconf --launch gpg-agent
 
 #News-Server
 export NNTPSERVER="news.albasani.net"
