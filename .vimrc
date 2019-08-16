@@ -65,10 +65,8 @@ Plugin 'mhinz/vim-startify'
 "Plugin 'scrooloose/syntastic'
 "Youcompleteme
 Plugin 'Valloric/YouCompleteMe'
-"A-Plugin for C++
-"Plugin 'vim-scripts/a.vim'
 Plugin 'Shougo/echodoc.vim'
-
+Plugin 'suan/vim-instant-markdown'
 filetype plugin indent on    " required
 "All of your Plugins must be added before the following line
 call vundle#end() 
@@ -76,7 +74,7 @@ call vundle#end()
 "restoring filetype detection
 syntax on
 "required for ultisnips?!
-filetype off
+"#filetype off
 filetype plugin indent on
 
 "---------------------------------------------
@@ -93,6 +91,11 @@ hi normal ctermbg=none
 "Special file types
 "recognize md files as markdown
 au BufNewFile,BufRead *.{md,markdown} set filetype=markdown
+
+let vim_markdown_preview_browser='firefox'
+"Markdown preview
+let vim_markdown_preview_hotkey='<C-m>'
+
 
 "---------------------------------------------
 "Misc
