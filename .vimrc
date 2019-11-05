@@ -66,7 +66,11 @@ Plugin 'mhinz/vim-startify'
 "Youcompleteme
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'Shougo/echodoc.vim'
+"instant markdown preview in firefox
 Plugin 'suan/vim-instant-markdown'
+"Restructured text tools
+Plugin 'vim-scripts/VST'
+
 filetype plugin indent on    " required
 "All of your Plugins must be added before the following line
 call vundle#end() 
@@ -423,6 +427,13 @@ map tp :tabprevious<CR>
 map tn :tabnext<CR>
 map tq :tabclose<CR>
 map tqq :tabclose!<CR>
+
+"---------------------------------------------
+""Additional commands
+
+"This will convert a "restructured Text" document to HTML, write it to the tmp
+"folder and preview it in Firefox
+:com RSTP :exec "Vst html" | w! /tmp/rstprev.html | :q | !firefox /tmp/restprev.html
 
 "---------------------------------------------
 "EOF
