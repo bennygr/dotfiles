@@ -33,7 +33,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'SirVer/ultisnips'
 "My personal snippets
 Plugin 'bennygr/snips'
-"nord colors
+"colors
 Plugin 'arcticicestudio/nord-vim'
 "The nerdtree plugin
 Plugin 'scrooloose/nerdtree'
@@ -83,13 +83,15 @@ filetype plugin indent on
 
 "---------------------------------------------
 "Colors
+"
+"hi normal ctermbg=none
 "my terminal supports 256 colors
 set t_Co=256
 set background=dark
 "Setting my coloscheme
 "colorscheme xoria256
 colorscheme nord
-hi normal ctermbg=none
+
 
 "---------------------------------------------
 "Special file types
@@ -201,7 +203,7 @@ set laststatus=2
 set noshowmode
 "status bar configuration
 let g:lightline = {
-			\ 'colorscheme': 'wombat',
+			\ 'colorscheme': 'nord',
 			\ 'mode_map': { 'c': 'NORMAL' },
 			\ 'active': {
 			\   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
@@ -343,8 +345,17 @@ let g:startify_custom_footer =
 "make for C++ 
 nnoremap <F6> :make<cr>
 
+"location list for errors
+let g:ycm_always_populate_location_list = 1
+
 nnoremap <leader>xx :YcmCompleter FixIt<CR>
 nnoremap <leader>gd :YcmCompleter GoTo<CR>
+nnoremap <leader>xx :YcmCompleter FixIt<CR>
+nnoremap <leader>gd :YcmCompleter GoTo<CR>
+nnoremap <leader>gn :lnext<CR>
+nnoremap <leader>gp :lprevious<CR>
+
+let g:ycm_key_list_stop_completion = ['<leader>k']
 
 let g:ycm_error_symbol = '▶'
 let g:ycm_warning_symbol = '‣'
