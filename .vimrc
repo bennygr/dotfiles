@@ -57,15 +57,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'godlygeek/tabular'
 "Startify: Vim startscreen
 Plugin 'mhinz/vim-startify'
-"OmniSharp
-"Note: the omni-sharp server has to be build by hand after 
-"the plugin has been installed
-"Plugin 'OmniSharp/omnisharp-vim'
-"Plugin 'tpope/vim-dispatch'
-"Plugin 'scrooloose/syntastic'
 "Youcompleteme
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'Shougo/echodoc.vim'
 "instant markdown preview in firefox
 Plugin 'suan/vim-instant-markdown'
 "Restructured text tools
@@ -296,8 +289,6 @@ set nofoldenable
 "longest: don't autoselect first item in omnicomplete
 "menuone: popup even on only one match
 set completeopt=longest,menuone
-"Show method signature using the echodoc plugin
-let g:echodoc_enable_at_startup = 1
 
 " Preserve selection after indentation
 vmap > >gv
@@ -339,19 +330,23 @@ let g:startify_custom_footer =
 "make 
 nnoremap <F6> :make<cr>
 "---------------------------------------------
-"C# PROGRAMMING
+"C# PROGRAMMING - YouCompleteMe
 
-"location list for errors
-let g:ycm_always_populate_location_list = 1
+" no max diagnostic
+let g:ycm_max_diagnostics_to_display = 0
 
 nnoremap <leader>xx :YcmCompleter FixIt<CR>
 nnoremap <leader>gd :YcmCompleter GoTo<CR>
 nnoremap <leader>xx :YcmCompleter FixIt<CR>
-nnoremap <leader>gd :YcmCompleter GoTo<CR>
 nnoremap <leader>gn :lnext<CR>
 nnoremap <leader>gp :lprevious<CR>
 
-let g:ycm_key_list_stop_completion = ['<leader>k']
+let g:ycm_key_list_stop_completion = ['<leader>k', '<C-y>']
+
+"show a completeopt window 
+let g:ycm_add_preview_to_completeopt = 1
+" and close when leaving insert mode
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 let g:ycm_error_symbol = '▶'
 let g:ycm_warning_symbol = '‣'
@@ -366,6 +361,7 @@ autocmd FileType cs set errorformat=\ %#%f(%l\\\,%c):\ %m
 "Show Nerdtree  with F2
 map <F2> :NERDTreeTabsToggle<CR>
 let NERDTreeDirArrows=0
+let g:nerdtree_tabs_synchronize_view = 1
 
 "---------------------------------------------
 "ctrl p
