@@ -50,7 +50,7 @@ Plugin 'Townk/vim-autoclose'
 "lightline statusbar 
 Plugin 'itchyny/lightline.vim'
 "ctrlp plugin for opening files
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 "git plugin
 Plugin 'tpope/vim-fugitive'
 "Text alignment 
@@ -335,15 +335,11 @@ let g:startify_custom_footer =
 			\ [''] + map(split(system('date +"%A, %d %B %Y"'), '\n'), '"   ". v:val')
 
 "---------------------------------------------
-"C# PROGRAMMING
-"OmniSharp - for C# programming
-
-" Get Code Issues and syntax errors
-"let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
-
-
-"make for C++ 
+" PROGRAMMING
+"make 
 nnoremap <F6> :make<cr>
+"---------------------------------------------
+"C# PROGRAMMING
 
 "location list for errors
 let g:ycm_always_populate_location_list = 1
@@ -371,6 +367,15 @@ autocmd FileType cs set errorformat=\ %#%f(%l\\\,%c):\ %m
 map <F2> :NERDTreeTabsToggle<CR>
 let NERDTreeDirArrows=0
 
+"---------------------------------------------
+"ctrl p
+let g:ctrlp_working_path_mode = 'rw'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_by_filename = 1
+if executable('ag')
+  "use ag instead of build in vim search for ctrlp to speed things up
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 "---------------------------------------------
 "Search options
 
